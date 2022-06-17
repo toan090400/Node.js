@@ -31,7 +31,10 @@ exports.getBook = async (req, res) => {
 exports.createBook = async (req, res) => {
     try {
         const newBook = await Book.create(req.body);
-        res.status(200).json(newBook)
+        res.status(200).json({
+            newBook,
+            message: 'Thêm mới thành công',
+        })
 
     } catch (error) {
         res.status(400).json(error);
@@ -43,7 +46,10 @@ exports.updateBook = async (req, res) => {
             new: true,
             runValidators: true,
         });
-        res.status(200).json(newBook)
+        res.status(200).json({
+            newBook,
+            message:'Cập nhập thành công!'
+        })
 
     } catch (error) {
         console.log(error);
@@ -55,7 +61,7 @@ exports.deleteBook = async (req, res) => {
         const book = await Book.findByIdAndDelete(req.params.id);
 
         res.status(200).json({
-            status: 'success',
+            status: 'Xóa thành công',
         })
 
     } catch (error) {

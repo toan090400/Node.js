@@ -36,7 +36,7 @@ const BookSchema = new mongoose.Schema(
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
-        required: [true, 'Review must belong to a user']
+        // required: [true, 'Review must belong to a user']
     }
         
 },{timestamps: true,});

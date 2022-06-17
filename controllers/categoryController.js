@@ -4,7 +4,7 @@ exports.getAllCategorys = async (req, res) => {
     try {
         const categorys = await Category.find();
         // console.log(res.locals.user);
-        res.status(200).json({categorys});
+        res.status(200).json(categorys);
 
     } catch (error) {
         console.log(error);
@@ -30,7 +30,10 @@ exports.createCategory = async (req, res) => {
         
         const newCategory = await Category.create(req.body);
         
-        res.status(200).json(newCategory)
+        res.status(200).json({
+            newCategory,
+            message: 'Thêm mới thành công',
+        })
 
     } catch (error) {
         res.status(400).json(error);
@@ -46,7 +49,7 @@ exports.updateCategory = async (req, res) => {
 
         res.status(200).json({
             newCategory,
-            message:'update success!'
+            message:'Cập nhập thành công!'
         })
 
     } catch (error) {
@@ -57,8 +60,8 @@ exports.deleteCategory = async (req, res) => {
     try {
         const category = await Category.findByIdAndDelete(req.params.id);
         res.status(200).json({
-            status: 'success',
-        })
+            status: 'Xóa thành công',
+        });
 
     } catch (error) {
         res.status(400).json(error);
