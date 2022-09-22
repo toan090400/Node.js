@@ -1,20 +1,16 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-const bookController = require('./../controllers/bookController');
-const authController = require('./../controllers/authController');
-
-router.use(authController.isLoggedIn);
+const bookController = require("./../controllers/bookController");
+router
+  .route("/")
+  .get(bookController.getAllBooks)
+  .post(bookController.createBook);
 
 router
-    .route('/')
-    .get(bookController.getAllBooks)
-    .post(bookController.createBook);
-
-router
-    .route('/:id')
-    .get(bookController.getBook)
-    .patch(bookController.updateBook)
-    .delete(bookController.deleteBook);
+  .route("/:id")
+  .get(bookController.getBook)
+  .patch(bookController.updateBook)
+  .delete(bookController.deleteBook);
 
 module.exports = router;

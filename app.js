@@ -1,13 +1,10 @@
-const express = require('express')
-const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
-const mongoSanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const cors = require('cors')
-
+const express = require("express");
+const morgan = require("morgan");
+const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 // Set app
 const app = express();
@@ -19,17 +16,9 @@ app.use(helmet());
 app.use(cors());
 
 // Development logging
-if( process.env.NODE_ENV === 'development' ){
-    app.use(morgan('dev'));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
 }
-
-// Limit requests from same API
-// const limiter = rateLimit({
-//     max: 100,
-//     windowMs: 60 * 60 * 1000,
-//     message: 'Too many requests from this IP, please try again in an hour!'
-// });
-// app.use('/api', limiter);
 
 app.use(express.json());
 app.use(cookieParser());
@@ -41,24 +30,19 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // 2 handler
-const userRouter = require('./routes/userRoutes');
-const categoryRouter = require('./routes/categoryRoutes');
-const bookRouter = require('./routes/bookRoutes');
-
+const authRouter = require("./routes/authRoutes");
+const userRouter = require("./routes/userRoutes");
+const categoryRouter = require("./routes/categoryRoutes");
+const bookRouter = require("./routes/bookRoutes");
+const imageLocalRouter = require("./routes/imageLocalRoutes");
+const imageGoogleRouter = require("./routes/imageGoogleRoutes");
 // 3 routers
-
-app.use('/api/users',userRouter);
-app.use('/api/categorys',categoryRouter);
-app.use('/api/books', bookRouter);
-
-app.all('*',(req, res,next)=>{
-    res.status('404').json({
-        status: 'fail',
-        message: `Can't find ${req.originalUrl} on server`,
-    });
-    next();
-});
-
+app.use("/api/auths", authRouter);
+app.use("/api/users", userRouter);
+app.use("/api/categorys", categoryRouter);
+app.use("/api/books", bookRouter);
+app.use("/api/imageLocals", imageLocalRouter);
+app.use("/api/imageGoogles", imageGoogleRouter);
 
 // 4 server
 module.exports = app;
