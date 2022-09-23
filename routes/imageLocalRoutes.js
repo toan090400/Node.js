@@ -8,7 +8,7 @@ let path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../ui/public/assets/image_book"); // nơi lưu ảnh
+    cb(null, "./public/image"); // nơi lưu ảnh
   },
   filename: function (req, file, cb) {
     cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
@@ -32,7 +32,7 @@ router.post(
   imageController.postImageLocals
 );
 // xóa nhiều ảnh
-router.delete("/:id", imageController.deleteImageLocals);
+router.delete("/manyImage/:id", imageController.deleteImageLocals);
 // thêm 1 ảnh
 router.post(
   "/oneImage",
@@ -40,5 +40,5 @@ router.post(
   imageController.postImageLocal
 );
 // xóa 1 ảnh
-router.delete("/:id", imageController.deleteImageLocal);
+router.delete("/oneImage/:id", imageController.deleteImageLocal);
 module.exports = router;
