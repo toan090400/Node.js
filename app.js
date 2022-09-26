@@ -14,14 +14,13 @@ const app = express();
 app.use(helmet());
 // Set cors
 app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
 
 // Development logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-
-app.use(express.json());
-app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());

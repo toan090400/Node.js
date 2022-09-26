@@ -1,13 +1,13 @@
 const User = require("../models/userModel");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
 exports.getAllUsers = async (req, res) => {
   try {
+    // console.log(req.user);
     const users = await User.find();
 
     res.status(200).json({ users });
   } catch (error) {
+    console.log(error);
     res.status(400).json(error);
   }
 };
@@ -17,6 +17,7 @@ exports.getUser = async (req, res) => {
 
     res.status(200).json({ user });
   } catch (error) {
+    console.log(error);
     res.status(400).json(error);
   }
 };
@@ -27,7 +28,10 @@ exports.updateUser = async (req, res) => {
       runValidators: true,
     });
 
-    res.status(200).json({ newUser });
+    res.status(200).json({
+      newUser,
+      message: "Cập nhập thành công.",
+    });
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
@@ -35,20 +39,10 @@ exports.updateUser = async (req, res) => {
 };
 exports.deleteUser = async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.params.id);
+    // await User.findByIdAndDelete(req.params.id);
+    await User.findById(req.params.id);
     res.status(200).json({
-      status: "success",
-    });
-  } catch (error) {
-    res.status(400).json(error);
-  }
-};
-exports.createUser = async (req, res) => {
-  try {
-    // const user = await User.create(req.body);
-    res.status(200).json({
-      user: req.body,
-      message: "Thêm mới thành công",
+      message: "Xóa thành công.",
     });
   } catch (error) {
     console.log(error);
