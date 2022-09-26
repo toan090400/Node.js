@@ -8,7 +8,7 @@ exports.register = async (req, res) => {
     const username = req.body.username;
     const oldUser = await User.findOne({ username: username });
     if (oldUser) {
-      return res.status(201).json({
+      return res.status(404).json({
         message: "Tài khoản đã tồn tại.",
       });
     }
