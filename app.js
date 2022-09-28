@@ -35,6 +35,7 @@ const categoryRouter = require("./routes/categoryRoutes");
 const bookRouter = require("./routes/bookRoutes");
 const imageLocalRouter = require("./routes/imageLocalRoutes");
 const imageGoogleRouter = require("./routes/imageGoogleRoutes");
+const aggregateRouter = require("./routes/aggregateRoutes");
 // 3 routers
 app.use("/api/auths", authRouter);
 app.use("/api/users", userRouter);
@@ -42,6 +43,7 @@ app.use("/api/categorys", categoryRouter);
 app.use("/api/books", bookRouter);
 app.use("/api/imageLocals", imageLocalRouter);
 app.use("/api/imageGoogles", imageGoogleRouter);
+app.use("/api/aggregates", aggregateRouter);
 
 // 4 server
 module.exports = app;

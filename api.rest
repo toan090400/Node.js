@@ -1,0 +1,27 @@
+GET http://localhost:5000/api/aggregates
+
+###
+
+# GET http://localhost:5000/api/users
+
+
+###
+# POST http://localhost:5000/api/aggregates
+# content-type: application/json
+
+# {
+#     "pay": 100,
+#     "books":["63316bd241e48859ea311814"],
+#     "user":"632ec6a592e5a5c65770ca97"
+# }
+
+# ###
+# PATCH  http://localhost:5000/api/books/6333efca932389fde351d9b3
+# content-type: application/json
+
+# {
+#     "name": "sampleNew"
+# }
+
+# ###
+# DELETE   http://localhost:5000/api/books/6333efca932389fde351d9b3
