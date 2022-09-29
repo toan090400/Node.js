@@ -17,6 +17,12 @@ const BookSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    // image: [
+    //   {
+    //     filename: { type: String },
+    //     size: { type: Number },
+    //   },
+    // ],
     category: [
       {
         type: mongoose.Schema.ObjectId,
