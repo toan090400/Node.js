@@ -19,8 +19,8 @@ app.use(express.json());
 app.use(
   cookieSession({
     name: "session",
-    keys: ["passport"],
-    // maxAge: 24 * 60 * 60 * 100,
+    keys: [process.env.COOKIE_SESSION],
+    maxAge: 24 * 60 * 60 * 100,
   })
 );
 
@@ -34,8 +34,10 @@ if (process.env.NODE_ENV === "development") {
 const passportStrategy = require("./public/middleware/passport");
 // 2 handler
 const authRouter = require("./routes/authRoutes");
+const passportRouter = require("./routes/passportRoutes");
 // 3 routers
 app.use("/auth", authRouter);
+app.use("/api/passports", passportRouter);
 
 // 4 server
 module.exports = app;

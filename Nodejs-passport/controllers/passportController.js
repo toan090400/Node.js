@@ -1,4 +1,4 @@
-const User = require("../models/passportModel");
+const User = require("../models/passportGoogleModel");
 
 exports.getAllUsers = async (req, res) => {
   try {

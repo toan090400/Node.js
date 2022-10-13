@@ -9,11 +9,11 @@ const PassportSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    firstName: {
+    familyName: {
       type: String,
       trim: true,
     },
-    lastName: {
+    givenName: {
       type: String,
       trim: true,
     },
